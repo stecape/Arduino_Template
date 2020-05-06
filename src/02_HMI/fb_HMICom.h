@@ -58,7 +58,7 @@ void fb_BuildTXData(){
 
   for (uint8_t i=0; i<l_HMI_L; i++){
     udtLogic *lVal = &VectL[i];
-    if (lVal->byPrevSt!=lVal->bySt){
+    if (lVal->byPrevSt!=lVal->bySt || boGimmeEverything){
       boChanged=true;
       HMICom->byBuffer[inCursor+inOffset] = i;
       HMICom->byBuffer[inCursor+inOffset+1] = lVal->bySt;
@@ -83,7 +83,7 @@ void fb_BuildTXData(){
 
   for (uint8_t i=0; i<l_HMI_B; i++){
     udtButton *bVal = &VectB[i];
-    if (bVal->byPrevSt!=bVal->bySt){
+    if (bVal->byPrevSt!=bVal->bySt || boGimmeEverything){
       boChanged=true;
       HMICom->byBuffer[inCursor+inOffset] = i;
       HMICom->byBuffer[inCursor+inOffset+1] = bVal->bySt;
@@ -108,7 +108,7 @@ void fb_BuildTXData(){
 
   for (uint8_t i=0; i<l_Alarms; i++){
     udtAlarm *alVal = &VectAl[i];
-    if (alVal->byPrevSt!=alVal->bySt){
+    if (alVal->byPrevSt!=alVal->bySt || boGimmeEverything){
       boChanged=true;
       HMICom->byBuffer[inCursor+inOffset] = i;
       HMICom->byBuffer[inCursor+inOffset+1] = alVal->bySt;
@@ -133,7 +133,7 @@ void fb_BuildTXData(){
 
   for (uint8_t i=0; i<l_HMI_A; i++){
     udtAct *aVal = &VectA[i];
-    if (aVal->inPrevVal!=aVal->inVal){
+    if (aVal->inPrevVal!=aVal->inVal || boGimmeEverything){
       boChanged=true;
       HMICom->byBuffer[inCursor+inOffset] = i;
       HMICom->byBuffer[inCursor+inOffset+1] = highByte(aVal->inVal);
@@ -161,7 +161,7 @@ void fb_BuildTXData(){
   if (boChanged) {
     for (uint8_t i=0; i<l_HMI_S; i++){
       udtSet *sVal = &VectS[i];
-      if (sVal->inPrevVal!=sVal->inVal){
+      if (sVal->inPrevVal!=sVal->inVal || boGimmeEverything){
         boChanged=true;
         HMICom->byBuffer[inCursor+inOffset] = i;
         HMICom->byBuffer[inCursor+inOffset+1] = highByte(sVal->inVal);
@@ -189,7 +189,6 @@ void fb_BuildTXData(){
 };
 
 void fb_ParseRecData(){
-  for (int i=0; i< sizeof(HMICom->byBuffer); i++) SerialUSB.println(HMICom->byBuffer[i], DEC);
   //Ho ricevuto una trama da PI, quindi la comunicazione è sana.
   //Aggiorno il wdCount per non far scattare il watchdog che mi resetta i pulsanti
   HMICom->inWdCount=millis();
