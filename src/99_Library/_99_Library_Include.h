@@ -10,6 +10,8 @@
 #include <efc.h>
 #include <flash_efc.h>
 
+#include <SerialTransfer.h>
+
 #include "fb_HMILogicFunctions.h"
 
 #endif

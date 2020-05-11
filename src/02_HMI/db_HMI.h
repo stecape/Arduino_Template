@@ -15,11 +15,11 @@ udtLogic VectL[l_HMI_L];
 
 //Here you can give a name to the variable in the vect, for an easier use in the program. Only Logic type is allowed in this array.
 struct db_HMI_L {
-  struct udtLogic *Motor0 = &VectL[0];
-  struct udtLogic *Motor1 = &VectL[1];
-  struct udtLogic *Motor2 = &VectL[2];
-  struct udtLogic *Motor3 = &VectL[3];
-  struct udtLogic *Motor4 = &VectL[4];
+  udtLogic *Motor0 = &VectL[0];
+  udtLogic *Motor1 = &VectL[1];
+  udtLogic *Motor2 = &VectL[2];
+  udtLogic *Motor3 = &VectL[3];
+  udtLogic *Motor4 = &VectL[4];
 };
 
 db_HMI_L _HMI_L, *HMI_L = &_HMI_L;

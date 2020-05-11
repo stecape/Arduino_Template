@@ -22,4 +22,7 @@
 //Librerie
 #include "99_Library\_99_Library_Include.h"
 
+//Instanziamento oggetto di comunicazione verso l'HMI
+SerialTransfer myTransfer;
+
 #endif

@@ -3,10 +3,10 @@
 
 
 struct udtLogic {
-  unsigned char byCmd;
-  unsigned char bySt;
-  unsigned char byPrevSt;
-  unsigned char inIndex;
+  byte byCmd;
+  byte bySt;
+  byte byPrevSt;
+  byte inIndex;
   bool boQ0;
   bool boQ1;
   bool boQ2;
@@ -18,9 +18,9 @@ struct udtLogic {
 };
 
 struct udtButton {
-  unsigned char byCmd;
-  unsigned char bySt;
-  unsigned char byPrevSt;
+  byte byCmd;
+  byte bySt;
+  byte byPrevSt;
   bool boQ0;
   bool boQ1;
   bool boQ2;
@@ -42,8 +42,8 @@ struct udtAct {
 };
 
 struct udtAlarm {
-  unsigned char bySt;
-  unsigned char byPrevSt;
+  byte bySt;
+  byte byPrevSt;
 };
 
 

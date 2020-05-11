@@ -10,11 +10,6 @@ struct db_Config{
   const int BAUD_RATE = 250000;
   //Lunghezza del buffer di recezione da HMI
   //è indicato nella fb_HMICom
-    
-  //Delimitatore di inizio trama
-  const char START_MARKER = '{';
-  //Delimitatore di fine trama
-  const char END_MARKER = '}';
   
   //ts è la variabile di appoggio del time stamp. Usato per trasmettere verso l'HMI ogni txRate ms
   int inTs=0;

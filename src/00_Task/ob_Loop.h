@@ -9,7 +9,7 @@
 
 void ob_Loop(){
     //HMI Receive
-    fb_HMIReceive(Config->START_MARKER, Config->END_MARKER);
+    fb_HMIReceive();
 
     // if(Interrupt->boFlag){
     //     Serial.println(Interrupt->inCounter);
