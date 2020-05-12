@@ -25,7 +25,7 @@ void ob_Setup(){
     }
     
     //Interrupt attachment
-    //Timer8.attachInterrupt(ob_Interrupt).start(Config->INTERRUPT_TIME_BASE);
+    Timer8.attachInterrupt(ob_Interrupt).start(Config->INTERRUPT_TIME_BASE);
 }
 
 

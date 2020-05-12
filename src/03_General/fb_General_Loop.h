@@ -51,7 +51,7 @@ void fb_General_Loop(){
     HMI_B->Jog4,
     bitRead(HMI_B->Jog4->byCmd, 0),false,false,false,false,false,false,false
   );
-
+  
   digitalWrite(LED_BUILTIN, HMI_B->Jog1->boQ0);
   
   HMI_A->Current0->inVal=HMI_S->Speed0->inVal*2;
@@ -59,6 +59,10 @@ void fb_General_Loop(){
   HMI_A->Current2->inVal=HMI_S->Speed2->inVal*2;
   HMI_A->Current3->inVal=HMI_S->Speed3->inVal*2;
   HMI_A->Current4->inVal=HMI_S->Speed4->inVal*2;
+  Global->diCycleTime = millis()-Global->diPrevCycleTime;
+  Global->diPrevCycleTime = millis();
+  HMI_A->CycleTime->inVal = (int)(Global->diCycleTime);
 }
+
 
 #endif

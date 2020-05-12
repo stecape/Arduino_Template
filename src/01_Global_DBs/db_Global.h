@@ -5,6 +5,8 @@
 
 struct db_Global{
     bool boAlarmsAck;
+    uint32_t diCycleTime;
+    uint32_t diPrevCycleTime;
 };
 db_Global _Global, *Global = &_Global;
 

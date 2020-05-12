@@ -7,7 +7,7 @@
 const int l_HMI_L= 5;
 const int l_HMI_B= 5;
 const int l_HMI_S= 5;
-const int l_HMI_A= 5;
+const int l_HMI_A= 6;
 const int l_Alarms= 5;
 
 //Logic vars. lVecL is the lenght of the Logic variables array.
@@ -71,6 +71,7 @@ udtAct *Current1 = &VectA[1];
 udtAct *Current2 = &VectA[2];
 udtAct *Current3 = &VectA[3];
 udtAct *Current4 = &VectA[4];
+udtAct *CycleTime = &VectA[5];
 };
 
 db_HMI_A _HMI_A, *HMI_A = &_HMI_A;
