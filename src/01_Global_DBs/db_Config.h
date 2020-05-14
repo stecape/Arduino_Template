@@ -24,7 +24,9 @@ struct db_Config{
 
   //EEPROM
   //LogicOffset è l'offset di indirizzamento di memoria EEPROM a partire dal quale vengono salvati gli stati logici.
-  int inLogicOffset = 100;
+  int inLogicOffset = 0;
+  //SetpointOffset è l'offset di indirizzamento di memoria EEPROM a partire dal quale vengono salvati i setpoint. Equivale al numero di variabili logiche + un po' di spazio di sicurezza
+  int inSetpointOffset = l_HMI_L+10;
 
   //Interrupt
   //Definisce la base tempi dell'interrupt. Da questa base tempi tb, espressa in microsecondi, verranno generati 2 task di interrupt: uno a 2*tb, uno a 10*tb.

@@ -18,12 +18,9 @@ void ob_Setup(){
     //Inizializzazione I/O. Probabilmente bisognerà fare una sua function
     pinMode(LED_BUILTIN, OUTPUT);
 
-    //Inizializzazione indici variabili Logiche per puntamento EEPROM
-    for(int i=0; i<l_HMI_L; i++) {
-        udtLogic *lVar = &VectL[i];
-        lVar->inIndex = i;
-    }
-    
+    //Inizializzazione limiti Setpoints e indici variabili logiche e setpoints per puntamento EEPROM
+    fb_HMIInit();
+
     //Interrupt attachment
     Timer8.attachInterrupt(ob_Interrupt).start(Config->INTERRUPT_TIME_BASE);
 }

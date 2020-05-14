@@ -189,7 +189,7 @@ void fb_getAlarms(byte byInstr, int * inCursor){
 void fb_getSets(byte byInstr, int * inCursor){
   
   //Agisco solo se l'istruzione è false o inSEND_SETS
-  if (false || byInstr == HMICom->inSEND_SETS) {
+  if (byInstr == HMICom->inSEND_VARIATIONS || byInstr == HMICom->inSEND_SETS) {
     
     //inizializzo il flag di changed a true se l'istruzione ricevuta è inSEND_SETS. Utilizzerò questa flag per decidere se scrivere la S nel buffer ed eventualmente per spostare il cursore se alla fine qualcosa sarà cambiato
     bool boChanged = byInstr == HMICom->inSEND_SETS;
@@ -204,8 +204,11 @@ void fb_getSets(byte byInstr, int * inCursor){
       //Creo un'istanza locale
       udtSet * sVar = &VectS[i];
       
+      //chiamo il controllo limiti del Setpoint chiamarlo qui è brutto perchè vedo l'effetto un loop dopo,  ma ottimizzo il codice perchè sto già scrollando tutti i setpoint
+      fb_Setpoint(sVar);
+
       //Se è cambiata o se devo mandare tutti i setpoints
-      if (false || byInstr == HMICom->inSEND_SETS) {
+      if (sVar->inHMIVal != sVar->inPrevVal || byInstr == HMICom->inSEND_SETS) {
         
         //Aggiorno la flag di changed
         boChanged = true;
@@ -214,13 +217,13 @@ void fb_getSets(byte byInstr, int * inCursor){
         byCounter++;
 
         //Aggiorno il valore precedente
-        sVar->inPrevVal = sVar->inVal;
+        sVar->inPrevVal = sVar->inHMIVal;
 
         //Inserisco l'indice della variabile nel buffer
         myTransfer.txBuff[*inCursor+inOffset] = i;
         //Inserisco il valore della variabile nel buffer
-        myTransfer.txBuff[*inCursor+inOffset+1] = highByte(sVar->inVal);
-        myTransfer.txBuff[*inCursor+inOffset+2] = lowByte(sVar->inVal);
+        myTransfer.txBuff[*inCursor+inOffset+1] = highByte(sVar->inHMIVal);
+        myTransfer.txBuff[*inCursor+inOffset+2] = lowByte(sVar->inHMIVal);
 
         //sposto l'offset in avanti
         inOffset+=3;
@@ -336,9 +339,14 @@ void fb_HMIReceive () {
             //Getting index of the var
             udtSet * sVar = &VectS[myTransfer.rxBuff[inCursor]];
             //Retreiving value of the var
-            sVar->inVal = (myTransfer.rxBuff[inCursor+1]<<8) + (myTransfer.rxBuff[inCursor+2] & 0xFF);
+            sVar->inHMIVal = (myTransfer.rxBuff[inCursor+1]<<8) + myTransfer.rxBuff[inCursor+2];
             inCursor+=3;
           }
+          break;
+        
+        //default case: if you get there it means that you have an error on the frame. Stop the loop forcing the exit condition
+        default:
+          inCursor= myTransfer.bytesRead-1;
           break;
       }
     }

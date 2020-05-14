@@ -93,4 +93,34 @@ udtAlarm *Fault4 = &VectAl[4];
 
 db_Alarms _Alarms, *Alarms = &_Alarms;
 
+
+//Setpoints limits and indexes initialization
+void fb_HMIInit(){
+
+
+  //Inizializzazione indici Logiche
+  for(int i=0; i<l_HMI_L; i++) {
+      udtLogic *lVar = &VectL[i];
+      lVar->inIndex = i;
+  }
+  
+  //Inizializzazione indici setpoints
+  for(int i=0; i<l_HMI_S; i++) {
+      udtSet *sVar = &VectS[i];
+      sVar->inIndex = i;
+  }
+
+  //Inizializzazione Limiti Setpoints
+  HMI_S->Speed0->inMin=20;
+  HMI_S->Speed0->inMax=600;
+  HMI_S->Speed1->inMin=20;
+  HMI_S->Speed1->inMax=600;
+  HMI_S->Speed2->inMin=20;
+  HMI_S->Speed2->inMax=600;
+  HMI_S->Speed3->inMin=20;
+  HMI_S->Speed3->inMax=600;
+  HMI_S->Speed4->inMin=20;
+  HMI_S->Speed4->inMax=600;
+}
+
 #endif

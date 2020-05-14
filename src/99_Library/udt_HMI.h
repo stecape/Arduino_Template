@@ -6,7 +6,8 @@ struct udtLogic {
   byte byCmd;
   byte bySt;
   byte byPrevSt;
-  byte inIndex;
+  int inIndex;
+  bool boInit;
   bool boQ0;
   bool boQ1;
   bool boQ2;
@@ -33,7 +34,12 @@ struct udtButton {
 
 struct udtSet {
   int inVal;
+  int inHMIVal;
   int inPrevVal;
+  int inMin;
+  int inMax;
+  int inIndex;
+  bool boInit;
 };
 
 struct udtAct {
