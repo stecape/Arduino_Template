@@ -12,6 +12,7 @@
 
 #include <SerialTransfer.h>
 
-#include "fb_HMILogicFunctions.h"
+#include "fb_HMIFunctions.h"
+#include "fb_AlarmFunctions.h"
 
 #endif

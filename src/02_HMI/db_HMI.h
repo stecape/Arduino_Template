@@ -92,7 +92,7 @@ udtAlarm *Fault4 = &VectAl[4];
 };
 
 db_Alarms _Alarms, *Alarms = &_Alarms;
-
+udtMachineReactions _MachineReactions, *MachineReactions = &_MachineReactions;
 
 //Setpoints limits and indexes initialization
 void fb_HMIInit(){
@@ -121,6 +121,13 @@ void fb_HMIInit(){
   HMI_S->Speed3->inMax=600;
   HMI_S->Speed4->inMin=20;
   HMI_S->Speed4->inMax=600;
+
+  //Inizializzazione reazioni Allarmi
+  Alarms->Fault0->byReaction = REACT_WARNING;
+  Alarms->Fault1->byReaction = REACT_NORMAL_STOP;
+  Alarms->Fault2->byReaction = REACT_WARNING;
+  Alarms->Fault3->byReaction = REACT_WARNING;
+  Alarms->Fault4->byReaction = REACT_WARNING;
 }
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef fb_HMILogicFunctions_h
-#define fb_HMILogicFunctions_h
+#ifndef fb_HMIFunctions_h
+#define fb_HMIFunctions_h
 
 #include "..\70_udt\_70_udt_Include.h"
 
@@ -91,14 +91,19 @@ void fb_Setpoint(udtSet *sVar){
   }
 
   if (sVar->inMin > sVar->inVal){
+    sVar->inPrevVal = sVar->inVal;
     sVar->inVal = sVar->inMin;
+    sVar->inHMIVal = sVar->inVal;
   } 
   else if (sVar->inVal > sVar->inMax)
   {
+    sVar->inPrevVal = sVar->inVal;
     sVar->inVal = sVar->inMax;
+    sVar->inHMIVal = sVar->inVal;
   }
   
   if (sVar->inMin > sVar->inHMIVal || sVar->inHMIVal > sVar->inMax) {
+    sVar->inPrevVal = sVar->inHMIVal;
     sVar->inHMIVal = sVar->inVal;
   } else {
     sVar->inVal = sVar->inHMIVal;

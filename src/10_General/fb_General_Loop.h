@@ -4,7 +4,22 @@
 #include "..\__Include.h"
 
 void fb_General_Loop(){
+
+  //Alarms management
+  fb_AlarmsEvaluation(VectAl, l_Alarms, &Global->boAlarmsAck, MachineReactions, &General->boAlarmPresent, &General->boBuzzer, &General->boNewAlarm);
     
+  fb_Alarm(Alarms->Fault0, HMI_B->Jog3->boQ0);
+  fb_Alarm(Alarms->Fault1, HMI_L->Motor3->boQ1);
+  
+  //Some logic and analogic management
+
+  fb_Setpoint(HMI_S->Speed0);
+  fb_Setpoint(HMI_S->Speed1);
+  fb_Setpoint(HMI_S->Speed2);
+  fb_Setpoint(HMI_S->Speed3);
+  fb_Setpoint(HMI_S->Speed4);
+
+
   fb_LogicSelectionSR(
     bitRead(HMI_L->Motor0->byCmd, 1) and true,
     bitRead(HMI_L->Motor0->byCmd, 0) and true,
@@ -59,6 +74,8 @@ void fb_General_Loop(){
   HMI_A->Current2->inVal=HMI_S->Speed2->inVal*2;
   HMI_A->Current3->inVal=HMI_S->Speed3->inVal*2;
   HMI_A->Current4->inVal=HMI_S->Speed4->inVal*2;
+
+  //Loop cycle time
   Global->diCycleTime = millis()-Global->diPrevCycleTime;
   Global->diPrevCycleTime = millis();
   HMI_A->CycleTime->inVal = (int)(Global->diCycleTime);

@@ -152,7 +152,7 @@ void fb_getAlarms(byte byInstr, int * inCursor){
       udtAlarm * alVar = &VectAl[i];
       
       //Se è cambiata o se devo mandare tutti gli alarms
-      if (alVar->bySt != alVar->byPrevSt || byInstr == HMICom->inSEND_ALARMS) {
+      if (alVar->bySt != alVar->byLastStSent || byInstr == HMICom->inSEND_ALARMS) {
         
         //Aggiorno la flag di changed
         boChanged = true;
@@ -161,7 +161,7 @@ void fb_getAlarms(byte byInstr, int * inCursor){
         byCounter++;
 
         //Aggiorno il valore precedente
-        alVar->byPrevSt = alVar->bySt;
+        alVar->byLastStSent = alVar->bySt;
 
         //Inserisco l'indice della variabile nel buffer
         myTransfer.txBuff[*inCursor+inOffset] = i;
@@ -203,9 +203,6 @@ void fb_getSets(byte byInstr, int * inCursor){
 
       //Creo un'istanza locale
       udtSet * sVar = &VectS[i];
-      
-      //chiamo il controllo limiti del Setpoint chiamarlo qui è brutto perchè vedo l'effetto un loop dopo,  ma ottimizzo il codice perchè sto già scrollando tutti i setpoint
-      fb_Setpoint(sVar);
 
       //Se è cambiata o se devo mandare tutti i setpoints
       if (sVar->inHMIVal != sVar->inPrevVal || byInstr == HMICom->inSEND_SETS) {
@@ -306,7 +303,7 @@ void fb_HMIReceive () {
 
     //Aggiorno il Flag
     HMICom->byFlag = myTransfer.rxBuff[0];
-
+    Global->boAlarmsAck = bitRead(HMICom->byFlag, 3);
     //Inizializzo il cursore
     int inCursor = 1;
     int inItemsNumber = 0;

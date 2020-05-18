@@ -4,17 +4,12 @@
 #include "..\__Include.h"
 
 #include "..\02_HMI\fb_HMICom.h"
-#include "..\03_General\fb_General_Loop.h"
+#include "..\10_General\fb_General_Loop.h"
 
 
 void ob_Loop(){
     //HMI Receive
     fb_HMIReceive();
-
-    // if(Interrupt->boFlag){
-    //     Serial.println(Interrupt->inCounter);
-    //     Interrupt->boFlag=false;
-    // }
 
     fb_General_Loop();
 
