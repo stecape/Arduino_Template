@@ -67,10 +67,4 @@ struct udtMachineReactions {
   bool boNotification;
 };
 
-const byte REACT_NORMAL_STOP = 1;
-const byte REACT_FAST_STOP = 2;
-const byte REACT_WARNING = 3;
-const byte REACT_SLOW_SPEED = 4;
-const byte REACT_NOTIFICATION = 5;
-
 #endif
