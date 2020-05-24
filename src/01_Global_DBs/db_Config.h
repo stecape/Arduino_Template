@@ -13,7 +13,7 @@ struct db_Config{
   
   //ts è la variabile di appoggio del time stamp. Usato per trasmettere verso l'HMI ogni txRate ms
   int inTs=0;
-  const int inTxRate = 500;
+  const int inTxRate = 250;
   
   //WatchDog
   //wd è il flag del watchdog dalla comunicazione con l'HMI. Ogni trasmissione verso l'HMI lo mando invertito.
@@ -30,7 +30,7 @@ struct db_Config{
 
   //Interrupt
   //Definisce la base tempi dell'interrupt. Da questa base tempi tb, espressa in microsecondi, verranno generati 2 task di interrupt: uno a 2*tb, uno a 10*tb.
-  const long int INTERRUPT_TIME_BASE = 15000;
+  const long int INTERRUPT_TIME_BASE = 10000;
 };
   
 db_Config _Config, *Config = &_Config;

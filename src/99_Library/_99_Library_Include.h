@@ -14,5 +14,6 @@
 
 #include "fb_HMIFunctions.h"
 #include "fb_AlarmFunctions.h"
+#include "fb_Micrometer.h"
 
 #endif

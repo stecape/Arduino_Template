@@ -14,6 +14,7 @@
 //db Share
 #include "01_Global_DBs\db_Global.h"
 #include "10_General\db_General.h"
+#include "10_General\db_AnalogInputs.h"
 #include "00_Task\db_Interrupt.h"
 
 //db config

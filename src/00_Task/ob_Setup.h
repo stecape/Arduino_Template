@@ -21,7 +21,9 @@ void ob_Setup(){
     //Inizializzazione limiti Setpoints e indici variabili logiche e setpoints per puntamento EEPROM
     fb_HMIInit();
 
-    //Interrupt attachment
+    fb_AnalogInputsInit();
+
+    //Cyclic Interrupt attachment
     Timer8.attachInterrupt(ob_Interrupt).start(Config->INTERRUPT_TIME_BASE);
 }
 

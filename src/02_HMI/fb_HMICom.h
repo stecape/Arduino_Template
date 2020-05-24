@@ -3,8 +3,7 @@
 
 #include "..\__Include.h"
 
-//This function composes the bundle of data to send to HMI. It will be something like
-//{"Wd":1,"Logic":"00020002000200020002","Act":"00280028002800640028","Alarm":"01010"}
+//This function composes the bundle of data to send to HMI.
 
 struct db_HMICom {
 
