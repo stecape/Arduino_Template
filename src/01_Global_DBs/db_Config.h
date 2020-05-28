@@ -13,7 +13,7 @@ struct db_Config{
   
   //ts è la variabile di appoggio del time stamp. Usato per trasmettere verso l'HMI ogni txRate ms
   int inTs=0;
-  const int inTxRate = 250;
+  const int inTxRate = 500;
   
   //WatchDog
   //wd è il flag del watchdog dalla comunicazione con l'HMI. Ogni trasmissione verso l'HMI lo mando invertito.

@@ -68,7 +68,7 @@ void fb_General_Loop(){
   
   HMI_A->Current0->inVal=HMI_S->Speed0->inVal*2;
   HMI_A->Current1->inVal=HMI_S->Speed1->inVal*2;
-  HMI_A->Micrometer1->inVal=Micrometer1->reValue;
+  HMI_A->Micr1->inVal=(int)(Micrometer1->reValue*100);
   HMI_A->Current3->inVal=HMI_S->Speed3->inVal*2;
   HMI_A->Current4->inVal=HMI_S->Speed4->inVal*2;
 
