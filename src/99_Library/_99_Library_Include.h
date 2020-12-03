@@ -9,11 +9,15 @@
 #include <DueFlashStorage.h>
 #include <efc.h>
 #include <flash_efc.h>
+#include <SPI.h>
+#include <Ethernet.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
 
-#include <SerialTransfer.h>
 
 #include "fb_HMIFunctions.h"
 #include "fb_AlarmFunctions.h"
 #include "fb_Micrometer.h"
+#include "fb_MQTT.h"
 
 #endif

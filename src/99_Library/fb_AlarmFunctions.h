@@ -73,9 +73,9 @@ void fb_Alarm(udtAlarm *alVarIN, bool boTriggerIN){
 struct db_AlarmsEvaluation {
 
   //Variabile di appoggio per il buzzer
-  long int diBuzzerTimer=0;
+  unsigned long int diBuzzerTimer=0;
   //Impostazione durata suono della sirena
-  long int diBuzzerTime=3000;
+  unsigned long int diBuzzerTime=3000;
 
 };
 db_AlarmsEvaluation _AlarmsEvaluation, *AlarmsEvaluation = &_AlarmsEvaluation;

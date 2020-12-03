@@ -11,9 +11,9 @@ void ob_Setup(){
     Serial.begin(Config->BAUD_RATE);
     while(!Serial){
 
-    } 
-
-    myTransfer.begin(Serial);
+    }
+    //Inizializzazione MQTT
+    MQTTsetup();
 
     //Inizializzazione I/O. Probabilmente bisognerà fare una sua function
     pinMode(LED_BUILTIN, OUTPUT);
